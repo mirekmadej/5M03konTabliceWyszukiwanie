@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.Marshalling;
-
+﻿
 namespace _5M03konWyszukiwanieDanegoElementu
 {
     internal class Program
@@ -30,6 +29,17 @@ namespace _5M03konWyszukiwanieDanegoElementu
             }
             return -1;
         }
+        private static int wyszukajStraznik(int[]t, int x)
+        {
+            t[rozmiar+1] = x;  //wartownik
+            int i = 1;
+            while(true)
+            {
+                if (t[i] == x)
+                    return i;
+                i++;
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -43,7 +53,9 @@ namespace _5M03konWyszukiwanieDanegoElementu
                     Console.WriteLine("zły rozmiar");
                     return;
                 }
-                tablica = new int[rozmiar + 1];
+                tablica = new int[rozmiar + 1 + 1];
+                //rozmiar tablicy jest zwiększony o jeden 
+                //dla algorytmu wyszukiwania ze strażnikiem
             }
             else
             {
@@ -63,6 +75,14 @@ namespace _5M03konWyszukiwanieDanegoElementu
             else
                 Console.WriteLine("elementu nie ma w tablicy");
 
+
+            Console.Write("podaj element do znalezienia (wartownik: ");
+            el = int.Parse(Console.ReadLine());
+            poz = wyszukajElement(tablica, el);
+            if (poz > rozmiar)
+                Console.WriteLine("elementu nie ma w tablicy");
+            else
+                Console.WriteLine($"znaleziono eleent na pozycji {poz}");
 
         }
     }

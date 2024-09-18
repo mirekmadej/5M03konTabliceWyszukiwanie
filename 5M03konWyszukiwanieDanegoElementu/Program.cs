@@ -1,4 +1,6 @@
-﻿namespace _5M03konWyszukiwanieDanegoElementu
+﻿using System.Runtime.InteropServices.Marshalling;
+
+namespace _5M03konWyszukiwanieDanegoElementu
 {
     internal class Program
     {
@@ -18,6 +20,15 @@
             for (int i = 1; i <= rozmiar; i++)
                 Console.Write($"{t[i]}, ");
             Console.WriteLine();
+        }
+        private static int wyszukajElement(int[] t, int x)
+        {
+            for(int i = 1; i<=rozmiar; i++)
+            {
+                if(t[i] == x)
+                    return i;
+            }
+            return -1;
         }
 
         static void Main(string[] args)
@@ -39,10 +50,20 @@
                 Console.WriteLine("zly rozmiar tablicy");
                 return;
             }
+
             wypelnijTablice(tablica);
             Console.WriteLine("Zawartość tablicy:");
             wypiszTablice(tablica);
-            
+
+            Console.Write("podaj element do znalezienia: ");
+            int el = int.Parse(Console.ReadLine());
+            int poz = wyszukajElement(tablica, el);
+            if (poz >= 0)
+                Console.WriteLine($"znaleziono eleent na pozycji {poz}");
+            else
+                Console.WriteLine("elementu nie ma w tablicy");
+
+
         }
     }
 }
